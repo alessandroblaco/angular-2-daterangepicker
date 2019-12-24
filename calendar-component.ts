@@ -1,7 +1,10 @@
 import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 declare var require: any;
 var moment = require('moment');
+import "moment-it";
+moment.locale("it")
 require('moment-range');
+console.log(moment.locale("it"));
 
 @Component({
     selector: 'calendar',
@@ -34,13 +37,13 @@ require('moment-range');
         <div class="col-md-12 flush">
             <table class="table table-condensed flush">
                 <thead>
-                    <th>Su</th>
-                    <th>Mo</th>
-                    <th>Tu</th>
-                    <th>We</th>
-                    <th>Th</th>
-                    <th>Fr</th>
+                    <th>Lu</th>
+                    <th>Ma</th>
+                    <th>Me</th>
+                    <th>Gi</th>
+                    <th>Ve</th>
                     <th>Sa</th>
+                    <th>Do</th>
                 </thead>
                 <tbody>
                     <tr *ngFor="let week of weekList; let i = index">
@@ -90,21 +93,23 @@ export class CalendarComponent implements OnChanges {
     }
     getWeeksRange(weeks: any, year: any, month: any) {
         let weeksRange = [];
+        console.log(weeks);
 
         for (let i = 0, len = weeks.length; i < len; i++) {
             let week = weeks[i];
             let firstWeekDay, lastWeekDay;
             if (i > 0 && week < weeks[i - 1]) {
-                firstWeekDay = moment([year, month]).add(1, "year").week(week).day(0);
-                lastWeekDay = moment([year, month]).add(1, "year").week(week).day(6);
+                firstWeekDay = moment([year, month]).add(1, "year").week(week).day(1);
+                lastWeekDay = moment([year, month]).add(1, "year").week(week+1).day(0);
             }
             else {
-                firstWeekDay = moment([year, month]).week(week).day(0);
-                lastWeekDay = moment([year, month]).week(week).day(6);
+                firstWeekDay = moment([year, month]).week(week-1).day(1);
+                lastWeekDay = moment([year, month]).week(week).day(0);
             }
             let weekRange = moment.range(firstWeekDay, lastWeekDay);
             weeksRange.push(weekRange);
         }
+        console.log(weeksRange);
         return weeksRange;
     }
     createCalendarGridData(): void {

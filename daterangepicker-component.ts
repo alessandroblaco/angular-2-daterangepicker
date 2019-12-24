@@ -13,6 +13,9 @@ import {
 import { Options } from "./daterangepicker-options";
 import { Defaults } from "./daterangepicker-default-ranges";
 import * as moment from "moment";
+import "moment-it";
+moment.locale("it")
+console.log(moment([2019, 11]).week(4).day(0))
 
 @Component({
     selector: "date-range-picker",
@@ -112,7 +115,7 @@ import * as moment from "moment";
             (click)="apply()"
             type="button"
           >
-            Apply
+            Seleziona
           </button>
           <button
             [class.hidden]="isAutoApply()"
@@ -120,7 +123,7 @@ import * as moment from "moment";
             (click)="cancel()"
             type="button"
           >
-            Cancel
+            Annulla
           </button>
           <button
             [disabled]="!this.range"
@@ -128,7 +131,7 @@ import * as moment from "moment";
             (click)="clear()"
             type="button"
           >
-            Clear
+            Cancella
           </button>
           <div
             class="flush text-center"

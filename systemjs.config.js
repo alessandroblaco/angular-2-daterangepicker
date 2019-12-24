@@ -22,6 +22,7 @@
             // other libraries
             'rxjs': 'npm:rxjs',
             'moment': 'npm:moment/moment.js',
+            'moment-it': 'npm:moment/locale/it.js',
             'moment-range': 'npm:moment-range/dist/moment-range.js'
         },
         // packages tells the System loader how to load when no filename and/or no extension
